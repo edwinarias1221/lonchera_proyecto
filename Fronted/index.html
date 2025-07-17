@@ -40,6 +40,32 @@
                 <div class="botones">
                     <a href="#" class="btn-1">Comer aquí<img class="icon" src="ubicacion.png" alt=""></a>
                     <a href="#" class="btn-2">Domicilio<img class="icon" src="DOMICILIO.png" alt=""></a>
+
+                    <!-- Formulario de domicilio -->
+                    <section id="formulario-domicilio" class="formulario-container" style="display: none;">
+                        <h2>Formulario de Domicilio</h2>
+                        <form id="form-domicilio">
+                            <input type="text" placeholder="Nombre completo" name="nombre" required>
+                            <input type="tel" placeholder="Teléfono" name="telefono" required>
+                            <input type="text" placeholder="Dirección" name="direccion" required>
+                            <input type="text" placeholder="Barrio" name="barrio">
+                            <textarea name="instrucciones" placeholder="Instrucciones especiales (opcional)"></textarea>
+
+                            <label for="pago">Método de pago:</label>
+                            <select name="pago" required>
+                                <option value="">Selecciona</option>
+                                <option value="Efectivo">Efectivo</option>
+                                <option value="Nequi">Nequi</option>
+                                <option value="Tarjeta">Tarjeta</option>
+                            </select>
+
+                            <button type="submit">Continuar al Menú</button>
+                        </form>
+                    </section>
+
+
+
+
                 </div>
             </div>
 
@@ -646,15 +672,25 @@
 
     <script src="script.js"></script>
 
-    <!-- Contenedor del carrito -->
+    <!-- 🛒 Carrito de Compras -->
     <div id="carrito" class="carrito-container">
-        <h2> Tu pedido:</h2>
+        <h2>🧾 Tu pedido</h2>
         <ul id="carrito-items"></ul>
-        <p><strong>Total:</strong> $<span id="carrito-total">0.00</span></p>
+
+        <p><strong>Total productos:</strong> $<span id="total-productos">0.00</span></p>
+        <p><strong>Descuento (20%):</strong> $<span id="descuentos">0.00</span></p>
+        <p><strong>Subtotal:</strong> $<span id="subtotal">0.00</span></p>
+
+        <div class="instrucciones-container" id="instrucciones-box" style="display: none;">
+            <label for="instrucciones">📝 Instrucciones especiales:</label>
+            <textarea id="instrucciones" placeholder="Ej: sin cebolla, poco picante..."></textarea>
+        </div>
+
         <button onclick="finalizarPedido()">Finalizar Pedido</button>
     </div>
 
-     
+
+
 
 </body>
 
