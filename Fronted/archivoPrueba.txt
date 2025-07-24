@@ -1,0 +1,7 @@
+git status 
+
+git checkout acoplamiento_backend_frontend
+
+git add .
+git commit -m "mensaje de subida al git"
+git push -u origin acoplamiento_backend_frontend
