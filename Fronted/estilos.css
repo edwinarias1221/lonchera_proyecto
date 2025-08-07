@@ -827,3 +827,12 @@ header {
   margin-bottom: 15px;
 }
 
+.formulario-domicilio {
+  border-left: 6px solid white;
+  transition: all 0.3s ease;
+}
+
+.formulario-comer-aqui {
+  border-left: 6px solid #ff0000;
+  transition: all 0.3s ease;
+}

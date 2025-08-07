@@ -83,7 +83,7 @@ function actualizarCarrito() {
     contenedor.appendChild(li);
   });
 
-  const descuento = total * 0.2;
+  const descuento = total * 0.;
   const subtotal = total - descuento;
 
   totalProductosEl.textContent = total.toFixed(2);
@@ -167,13 +167,79 @@ document.getElementById("form-domicilio")?.addEventListener("submit", function (
   e.preventDefault();
 
   const datos = Object.fromEntries(new FormData(this).entries());
-  console.log("📦 Datos del cliente:", datos);
+  console.log(" Datos del cliente:", datos);
 
   // Oculta formulario y muestra menú
   document.getElementById('formulario-domicilio').style.display = 'none';
   document.querySelector('main')?.scrollIntoView({ behavior: 'smooth' });
 });
 
+document.getElementById('form-domicilio').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const nombre = this.nombre.value;
+    const telefono = this.telefono.value;
+    const direccion = this.direccion.value;
+    const barrio = this.barrio.value;
+    const instrucciones = this.instrucciones.value;
+    const pago = this.pago.value;
+    const tipoPedido = this.tipo_pedido.value;
+    const mesa = this.mesa ? this.mesa.value : null;
+
+    const datos = {
+        nombre,
+        telefono,
+        direccion,
+        barrio,
+        instrucciones,
+        pago,
+        tipoPedido,
+        mesa
+    };
+
+    fetch('http://localhost:4567/guardarPedido', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
+    })
+    .then(res => res.text())
+    .then(mensaje => {
+        alert('Pedido enviado con éxito');
+        console.log(mensaje);
+        this.reset(); // Opcional: limpia el formulario tras envío
+        document.getElementById('formulario-domicilio').style.display = 'none'; // Oculta formulario
+    })
+    .catch(err => {
+        console.error('Error al enviar pedido:', err);
+    });
+});
+
+function seleccionarTipoPedido(tipo) {
+  const formulario = document.getElementById("formulario-domicilio");
+  const formElement = document.getElementById("form-domicilio");
+  const campoMesa = document.getElementById("campo-mesa");
+  const tipoPedido = document.getElementById("tipo-pedido");
+
+  // Mostrar el formulario
+  formulario.style.display = "block";
+
+  // ✅ Limpiar el formulario cada vez que se cambia de tipo
+  formElement.reset();
+
+  if (tipo === "comer_aca") {
+    campoMesa.style.display = "block";
+    tipoPedido.value = "comer_aca";
+    formulario.classList.add("formulario-comer-aqui");
+    formulario.classList.remove("formulario-domicilio");
+  } else if (tipo === "domicilio") {
+    campoMesa.style.display = "none";
+    tipoPedido.value = "domicilio";
+    formulario.classList.add("formulario-domicilio");
+    formulario.classList.remove("formulario-comer-aqui");
+  }
+}
 
 
 

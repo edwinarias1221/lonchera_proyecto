@@ -38,12 +38,16 @@
                     ¡Elige, disfruta y repite!
                 </p>
                 <div class="botones">
-                    <a href="#" class="btn-1">Comer aquí<img class="icon" src="ubicacion.png" alt=""></a>
-                    <a href="#" class="btn-2">Domicilio<img class="icon" src="DOMICILIO.png" alt=""></a>
+                    <a href="#" class="btn-1" onclick="seleccionarTipoPedido('comer_aca')">Comer aquí
+                        <img class="icon" src="ubicacion.png" alt="">
+                    </a>
+                    <a href="#" class="btn-2" onclick="seleccionarTipoPedido('domicilio')">Domicilio
+                        <img class="icon" src="DOMICILIO.png" alt="">
+                    </a>
 
-                    <!-- Formulario de domicilio -->
+                    <!-- Formulario compartido -->
                     <section id="formulario-domicilio" class="formulario-container" style="display: none;">
-                        <h2>Formulario de Domicilio</h2>
+                        <h2 id="formulario-titulo">Formulario</h2>
                         <form id="form-domicilio">
                             <input type="text" placeholder="Nombre completo" name="nombre" required>
                             <input type="tel" placeholder="Teléfono" name="telefono" required>
@@ -59,14 +63,22 @@
                                 <option value="Tarjeta">Tarjeta</option>
                             </select>
 
+                            <input type="hidden" name="tipo_pedido" id="tipo-pedido">
+
+                            <!-- Solo visible cuando es para comer aquí -->
+                            <div id="campo-mesa" style="display: none;">
+                                <input type="text" placeholder="Número de mesa" name="mesa">
+                            </div>
+
+                            <input type="hidden" name="productos" id="productosInput">
                             <button type="submit">Continuar al Menú</button>
                         </form>
+
+                        
+
                     </section>
-
-
-
-
                 </div>
+
             </div>
 
             <div class="header-img">
@@ -112,7 +124,7 @@
                                 Opcional: pepinillos.
                             </p>
                             <div class="icons">
-                                <span class="price">$15.000</span>
+                                <span class="price">$16.000</span>
                                 <span class="buy"><img src="car (1).svg" alt=""></span>
                             </div>
                         </div>
@@ -129,7 +141,7 @@
                                 Opcional: pepinillos.
                             </p>
                             <div class="icons">
-                                <span class="price">$19.000</span>
+                                <span class="price">$21.000</span>
                                 <span class="buy"><img src="car (1).svg" alt=""></span>
                             </div>
                         </div>
@@ -145,7 +157,7 @@
                                 fresca, tomate, cebolla grille y un toque picante de la casa.
                             </p>
                             <div class="icons">
-                                <span class="price">$18.000</span>
+                                <span class="price">$20.000</span>
                                 <span class="buy"><img src="car (1).svg" alt=""></span>
                             </div>
                         </div>
@@ -678,7 +690,7 @@
         <ul id="carrito-items"></ul>
 
         <p><strong>Total productos:</strong> $<span id="total-productos">0.00</span></p>
-        <p><strong>Descuento (20%):</strong> $<span id="descuentos">0.00</span></p>
+        <p><strong>Descuento (0%):</strong> $<span id="descuentos">0.00</span></p>
         <p><strong>Subtotal:</strong> $<span id="subtotal">0.00</span></p>
 
         <div class="instrucciones-container" id="instrucciones-box" style="display: none;">
