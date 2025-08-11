@@ -241,6 +241,62 @@ function seleccionarTipoPedido(tipo) {
   }
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    let carrito = [];
+
+    // Agregar producto al carrito
+    const carritoBtns = document.querySelectorAll(".box-1 .buy");
+    carritoBtns.forEach(btn => {
+        btn.addEventListener("click", function () {
+            const productId = parseInt(this.closest(".box-1").getAttribute("data-id"));
+            const productoEnCarrito = carrito.find(p => p.id === productId);
+
+            if (productoEnCarrito) {
+                productoEnCarrito.cantidad += 1;
+            } else {
+                carrito.push({ id: productId, cantidad: 1 });
+            }
+            alert("Producto agregado al carrito");
+        });
+    });
+
+    // Confirmar pedido
+    document.getElementById("confirmarPedidoBtn").addEventListener("click", function () {
+        const nombre = document.getElementById("nombre").value;
+        const telefono = document.getElementById("telefono").value;
+        const direccion = document.getElementById("direccion").value;
+        const barrio = document.getElementById("barrio").value;
+        const instrucciones = document.getElementById("instrucciones").value;
+        const metodoPago = document.getElementById("metodo_pago").value;
+        const mesa = document.getElementById("mesa") ? document.getElementById("mesa").value : null;
+
+        const pedido = {
+            nombre,
+            telefono,
+            direccion,
+            barrio,
+            instrucciones,
+            metodo_pago: metodoPago,
+            mesa,
+            productos: carrito
+        };
+
+        fetch("pedidos", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(pedido)
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data);
+            carrito = []; // limpiar carrito
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("Hubo un error al enviar el pedido");
+        });
+    });
+});
 
 
 tabs(".menu-nav");

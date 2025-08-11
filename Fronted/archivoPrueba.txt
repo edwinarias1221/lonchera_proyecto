@@ -7,3 +7,4 @@ git commit -m "mensaje de subida al git"
 git push -u origin acoplamiento_backend_frontend
 ALTER TABLE pedidos
 MODIFY COLUMN fecha DATETIME DEFAULT CURRENT_TIMESTAMP; # prefieres que MySQL lo agregue automáticamente, puedes modificar tu tabla así:
+git add Backend/src/Fronted/PedidosServlet.java
