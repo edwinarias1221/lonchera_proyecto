@@ -1,3 +1,9 @@
+
 {
-    "liveServer.settings.port": 5502
+  "liveServer.settings.port": 5502,
+
+  "java.project.sourcePaths": ["Backend/src"],
+  "java.project.outputPath": "Backend/bin",
+  "java.project.referencedLibraries": ["Backend/lib/**/*.jar"],
+  "java.project.excludedPaths": ["Backend/src/Fronted/PedidosServlet.java"]
 }

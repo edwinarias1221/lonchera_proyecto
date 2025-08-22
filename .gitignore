@@ -1,1 +1,19 @@
-/build/
+﻿# Compilados / artefactos
+*.class
+*.war
+/bin/
+/target/
+/Backend/bin/
+
+# Carpetas de despliegue o generadas
+Fronted/WEB-INF/
+src/main/webapp/WEB-INF/
+
+# Eclipse / VSCode
+/.project
+/.classpath
+/.settings/
+/.vscode/
+
+# Librerías locales (no versionar JARs sueltos)
+Backend/lib/*.jar
